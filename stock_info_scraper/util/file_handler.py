@@ -1,5 +1,4 @@
 import json
-import csv
 from os import read
 
 def write_json(file_name, data):
@@ -11,7 +10,12 @@ def read_json(file_name):
       data = json.load(read_file)
     return data
 
-def write_stock_info(stock_acronym, stock_info, source, time):
-  with open(f'data/{source}/{time}.csv', mode='a') as append_file:
-    file_writter = csv.writer(append_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    file_writter.writerow([stock_acronym, stock_info])
+def create_stock_info_file(source):
+  file_name = f'data/{source}.json'
+  write_json(file_name, {})
+
+def write_stock_info(stock_acronym, stock_info, source):
+  file_name = f'data/{source}.json'
+  file_content = read_json(file_name)
+  file_content[stock_acronym] = stock_info
+  write_json(file_name, file_content)

@@ -21,4 +21,4 @@ class LinksSpider(scrapy.Spider):
           'fundamentus': f'https://www.fundamentus.com.br/{fundamentus_links[index]}',
           'yahoo': f'https://br.financas.yahoo.com/quote/{acronyms[index]}.SA'
         }
-      file_handler.write_json('data/stock-acronyms.json', content)
+      file_handler.write_json('data/links.json', content)
