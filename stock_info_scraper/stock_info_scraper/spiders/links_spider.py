@@ -19,6 +19,7 @@ class LinksSpider(scrapy.Spider):
         acronyms[index] = acronyms[index].strip()
         content[acronyms[index]] = {
           'fundamentus': f'https://www.fundamentus.com.br/{fundamentus_links[index]}',
-          'yahoo': f'https://br.financas.yahoo.com/quote/{acronyms[index]}.SA'
+          'yahoo': f'https://br.financas.yahoo.com/quote/{acronyms[index]}.SA',
+          'yahoo_statistics': f'https://br.financas.yahoo.com/quote/{acronyms[index]}.SA/key-statistics'
         }
       file_handler.write_json('data/links.json', content)

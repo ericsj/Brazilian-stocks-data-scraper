@@ -4,13 +4,19 @@ import sys
 sys.path.append('./util')
 import file_handler
 
-def scrapeCompanyPrice(response):
+def scrape_company_symbol(response):
+      quote_header_info = response.css('div[id="quote-header-info"]')
+      return quote_header_info.css('fin-streamer[data-field="regularMarketPrice"]::attr(data-symbol)').get()
+
+def scrape_company_name(response):
+      return response.css('h1::text').get()
+
+def scrape_company_price(response):
       quote_header_info = response.css('div[id="quote-header-info"]')
       return quote_header_info.css('fin-streamer[data-field="regularMarketPrice"]::text').get()
 
-def scrapeCompanySymbol(response):
-      quote_header_info = response.css('div[id="quote-header-info"]')
-      return quote_header_info.css('fin-streamer[data-field="regularMarketPrice"]::attr(data-symbol)').get()
+def scrape_company_price_profit_ratio(response):
+      return response.css('td[data-test="PE_RATIO-value"]::text').get()
 
 class YahooSpider(scrapy.Spider):
     name = "yahoo"
@@ -22,8 +28,9 @@ class YahooSpider(scrapy.Spider):
            yield scrapy.Request(url=yahoo_url, callback=self.parse)
 
     def parse(self, response):
-      company_name = response.css('h1::text').get()
-      symbol = scrapeCompanySymbol(response)
-      price = scrapeCompanyPrice(response)
-      stock_info = { 'company_name': company_name, 'price': price }
-      file_handler.write_stock_info(symbol, stock_info, 'Yahoo')
+      stock_info = {
+        'company_name': scrape_company_name(response),
+        'price': scrape_company_price(response),
+        'price_profit_ratio': scrape_company_price_profit_ratio(response)
+      }
+      file_handler.write_stock_info(scrape_company_symbol(response), stock_info, 'Yahoo')
