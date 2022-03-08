@@ -4,7 +4,7 @@ let stockDataDao = {
   findAll: findAll,
   create: create,
   findById: findById,
-  findBySource: findBySource,
+  customSearch: customSearch,
   deleteById: deleteById,
   updateStockData: updateStockData
 }
@@ -17,9 +17,9 @@ function findById(id) {
   return stockData.findByPk(id)
 }
 
-function findBySource(source) {
+function customSearch(source, acronym) {
   return stockData.findAll({
-    where: { source }
+    where: { source, acronym }
   })
 }
 

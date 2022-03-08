@@ -18,6 +18,9 @@ const stockData = (sequelize, DataTypes) => {
     sector: {
       type: DataTypes.STRING
     },
+    price: {
+      type: DataTypes.DOUBLE
+    },
     priceProfitRatio: {
       type: DataTypes.DOUBLE
     },
