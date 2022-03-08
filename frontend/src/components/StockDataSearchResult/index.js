@@ -1,11 +1,24 @@
 import StockDataCard from '../StockDataCard'
+import NotFoundCard from '../NotFoundCard'
 import { StyledStockDataSearchResult } from './styles'
+import React from 'react'
 
-const StockDataSearchResult = ({ fundamentusData, yahooData }) => (
-  <StyledStockDataSearchResult>
-    {yahooData.length && <StockDataCard primary title='Yahoo' data={yahooData} />}
-    {fundamentusData.length && <StockDataCard title='Fundamentus' data={fundamentusData} />}
-  </StyledStockDataSearchResult>
-)
+const StockDataSearchResult = ({ yahooData, hasSearched, fundamentusData }) => {
+  React.useEffect(() =>{
+    console.log({yahooData, fundamentusData, hasSearched})
+  })
+  return(
+    hasSearched && (
+      <StyledStockDataSearchResult>
+        {yahooData
+            ? <StockDataCard primary title='Yahoo' data={yahooData} />
+            : <NotFoundCard source='Yahoo' />}
+        {fundamentusData
+            ? <StockDataCard title='Fundamentus' data={fundamentusData} />
+            : <NotFoundCard source='Fundamentus' />}
+      </StyledStockDataSearchResult>
+    )
+  )
+}
 
 export default StockDataSearchResult

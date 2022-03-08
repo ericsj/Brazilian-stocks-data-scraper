@@ -7,7 +7,7 @@ const SearchInputAndButton = ({ searchStockData }) => {
   const [stockAcronym, setStockAcronym] = React.useState('')
   
   const handleSearch = () => {
-    searchStockData(stockAcronym)
+    if(stockAcronym) searchStockData(stockAcronym)
   }
   
   const handleChange = (event) => {
@@ -17,7 +17,7 @@ const SearchInputAndButton = ({ searchStockData }) => {
   return (
     <StyledSearchInputAndButton>
       <TextField size="small" value={stockAcronym} onChange={handleChange}/>
-      <Button variant="contained" onClick={handleSearch}>Search</Button>
+      <Button type='submit' variant="contained" onClick={handleSearch}>Search</Button>
     </StyledSearchInputAndButton>
   )
 }
