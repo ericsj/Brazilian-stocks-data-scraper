@@ -3,11 +3,23 @@ import { StyledSearchInputAndButton } from './styles'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const SearchInputAndButton = () => (
-  <StyledSearchInputAndButton>
-    <TextField size="small" />
-    <Button variant="contained">Search</Button>
-  </StyledSearchInputAndButton>
-)
+const SearchInputAndButton = ({ searchStockData }) => {
+  const [stockAcronym, setStockAcronym] = React.useState('')
+  
+  const handleSearch = () => {
+    searchStockData(stockAcronym)
+  }
+  
+  const handleChange = (event) => {
+    setStockAcronym(event.target.value)
+  }
+
+  return (
+    <StyledSearchInputAndButton>
+      <TextField size="small" value={stockAcronym} onChange={handleChange}/>
+      <Button variant="contained" onClick={handleSearch}>Search</Button>
+    </StyledSearchInputAndButton>
+  )
+}
 
 export default SearchInputAndButton

@@ -1,19 +1,10 @@
 import StockDataCard from '../StockDataCard'
 import { StyledStockDataSearchResult } from './styles'
 
-const dataPrimary = [
-  'name: petrobras',
-  'ac: petr'
-]
-const dataSecondary = [
-  'name: gol',
-  'ac: goll'
-]
-
-const StockDataSearchResult = (props) => (
+const StockDataSearchResult = ({ fundamentusData, yahooData }) => (
   <StyledStockDataSearchResult>
-    <StockDataCard primary title='Yahoo' data={dataPrimary} />
-    <StockDataCard data={dataSecondary}/>
+    {yahooData.length && <StockDataCard primary title='Yahoo' data={yahooData} />}
+    {fundamentusData.length && <StockDataCard title='Fundamentus' data={fundamentusData} />}
   </StyledStockDataSearchResult>
 )
 
