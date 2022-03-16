@@ -1,14 +1,14 @@
-import file_handler
 from contextlib import nullcontext
 import scrapy
 from datetime import datetime
 import sys
 sys.path.append('./util')
+import file_handler
 
 
 def scrape_company_acronym(response):
     quote_header_info = response.css('div[id="quote-header-info"]')
-    return quote_header_info.css('fin-streamer[data-field="regularMarketPrice"]::attr(data-symbol)').get()
+    return quote_header_info.css('fin-streamer[data-field="regularMarketPrice"]::attr(data-symbol)').get()[:-3]
 
 
 def scrape_company_sector(response):
@@ -16,11 +16,11 @@ def scrape_company_sector(response):
         return response.xpath(
             '//div[@class="asset-profile-container"]/div/div/p')[1].xpath('span/text()')[1].get()
     except:
-        return ''
+        return None
 
 
 class YahooSpider(scrapy.Spider):
-    name = "yahoo-profile"
+    name = "Yahoo-profile"
 
     def start_requests(self):
         urls = file_handler.read_json('data/links.json')

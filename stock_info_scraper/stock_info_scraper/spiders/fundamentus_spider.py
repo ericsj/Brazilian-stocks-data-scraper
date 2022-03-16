@@ -6,49 +6,45 @@ import file_handler
 
 
 def scrape_company_symbol(response):
-    try:
-        return response.xpath('//tr')[0].xpath('td')[1].css('span::text').get()
-    except:
-        return ''
-
+    return response.xpath('//tr')[0].xpath('td')[1].css('span::text').get().strip()
 
 def scrape_company_name(response):
     try:
         return response.xpath('//tr')[2].xpath('td')[1].css('span::text').get()
     except:
-        return ''
+        return None
 
 
 def scrape_company_price(response):
     try:
-        return response.xpath('//tr')[0].xpath('td')[3].css('span::text').get()
+        return response.xpath('//tr')[0].xpath('td')[3].css('span::text').get().replace(',', '.')
     except:
-        return ''
+        return None
 
 
 def scrape_company_sector(response):
     try:
         return response.xpath('//tr')[3].xpath('td')[1].css('span a::text').get()
     except:
-        return ''
+        return None
 
 
 def scrape_company_price_profit_ratio(response):
     try:
-        return response.xpath('//table')[2].xpath('tr')[1].xpath('td')[3].xpath('span/text()')[0].extract()
+        return response.xpath('//table')[2].xpath('tr')[1].xpath('td')[3].xpath('span/text()')[0].extract().replace(',', '.')
     except:
-        return ''
+        return None
 
 
 def scrape_company_net_worth(response):
     try:
-        return response.xpath('//table')[3].xpath('tr')[3].xpath('td')[3].xpath('span/text()').get()
+        return response.xpath('//table')[3].xpath('tr')[3].xpath('td')[3].xpath('span/text()').get().replace('.','')
     except:
-        return ''
+        return None
 
 
 class FundamentusSpider(scrapy.Spider):
-    name = "fundamentus"
+    name = "Fundamentus"
 
     def start_requests(self):
         file_handler.create_stock_info_file('Fundamentus')

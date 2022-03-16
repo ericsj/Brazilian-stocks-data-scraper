@@ -5,7 +5,7 @@ from os import read
 
 def write_json(file_name, data):
     with open(file_name, 'w') as write_file:
-        write_file.write(json.dumps(data, indent=4))
+        json.dump(data, write_file, indent=4, ensure_ascii=False)
 
 
 def read_json(file_name):
@@ -33,7 +33,7 @@ def write_stock_info(stock_acronym, stock_info, source):
 def append_stock_info(stock_acronym, stock_info_key, stock_info_value, source):
     file_name = f'data/{source}.json'
     stock_info = read_json(file_name)
-    print(stock_acronym)
-    if stock_acronym in stock_info['data']:
-        stock_info['data'][stock_acronym][stock_info_key] = stock_info_value
-    write_json(file_name, stock_info)
+    if(stock_acronym):
+        if stock_acronym in stock_info['data']:
+            stock_info['data'][stock_acronym][stock_info_key] = stock_info_value
+        write_json(file_name, stock_info)
