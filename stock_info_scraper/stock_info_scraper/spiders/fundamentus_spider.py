@@ -61,6 +61,5 @@ class FundamentusSpider(scrapy.Spider):
             'priceProfitRatio': scrape_company_price_profit_ratio(response),
             'netWorth': scrape_company_net_worth(response),
         }
-        print(stock_info)
         file_handler.write_stock_info(scrape_company_symbol(
             response), stock_info, 'Fundamentus')
