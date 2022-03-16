@@ -1,6 +1,6 @@
 import requests
 import json
-
+import logging
 
 def upload_data(source):
     API_URL = f'http://localhost:5000/stock-data'
@@ -12,12 +12,19 @@ def upload_data(source):
                 headers = {'content-type': 'application/json'}
                 for stock_data in all_stocks_data.items():
                     stock_data[1]['acronym'] = stock_data[0]
-                    stock_data[1]['source'] = source
-                    requests.post(API_URL, data=json.dumps(
-                        stock_data[1], indent=4), headers=headers)
-    except:
-        print(f'{source} data not uploaded')
+                    try:
+                        if stock_data[1]['name'] or stock_data[1]['price'] or\
+                            stock_data[1]['sector'] or stock_data[1]['priceProfitRatio'] or\
+                                stock_data[1]['netWorth']:
+                                    stock_data[1]['source'] = source
+                                    requests.post(API_URL, data=json.dumps(
+                                        stock_data[1], indent=4), headers=headers)
+                    except Exception:
+                        logging.exception('')
 
+    except Exception:
+        print(f'{source} data not uploaded')
+        logging.exception('')
 
 def main():
     print('uploading...')
