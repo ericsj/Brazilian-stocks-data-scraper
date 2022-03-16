@@ -29,8 +29,8 @@ class YahooSpider(scrapy.Spider):
 
     def parse(self, response):
       stock_info = {
-        'company_name': scrape_company_name(response),
+        'name': scrape_company_name(response),
         'price': scrape_company_price(response),
-        'price_profit_ratio': scrape_company_price_profit_ratio(response)
+        'priceProfitRatio': scrape_company_price_profit_ratio(response)
       }
       file_handler.write_stock_info(scrape_company_symbol(response), stock_info, 'Yahoo')

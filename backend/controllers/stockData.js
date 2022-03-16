@@ -32,7 +32,7 @@ function findStockDataById(req, res) {
 }
 
 function getYahooStockData(req, res) {
-  stockDataDao.customSearch('yahoo', req.params.acronym)
+    stockDataDao.customSearch('Yahoo', req.params.acronym)
         .then((data) => {
             res.send(data)
         })
@@ -42,7 +42,7 @@ function getYahooStockData(req, res) {
 }
 
 function getFundamentusStockData(req, res) {
-    stockDataDao.customSearch('fundamentus', req.params.acronym)
+    stockDataDao.customSearch('Fundamentus', req.params.acronym)
         .then((data) => {
             res.send(data)
         })

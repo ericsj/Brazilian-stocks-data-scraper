@@ -15,7 +15,7 @@ function App() {
     setAcronym(acronym)
     setHasSearched(true)
     api
-      .get(`/stock-data/yahoo/${acronym}`)
+      .get(`/stock-data/Yahoo/${acronym}`)
       .then(response => {
         console.log(response.data?.[0])
         setYahooData(response.data?.[0])
@@ -25,7 +25,7 @@ function App() {
         console.log('Something went wrong\n', err)
       })
     api
-      .get(`/stock-data/fundamentus/${acronym}`)
+      .get(`/stock-data/Fundamentus/${acronym}`)
       .then(response => {
         setFundamentusData(response.data?.[0])
       })
@@ -38,8 +38,8 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
-        <BigText style={{fontWeight: 400}}>{"Search stock data"}</BigText>
-        <SearchInputAndButton searchStockData={searchStockData}/>
+        <BigText style={{ fontWeight: 400 }}>{"Search stock data"}</BigText>
+        <SearchInputAndButton searchStockData={searchStockData} />
         {acronym && <BigText>{acronym}</BigText>}
         <StockDataSearchResult
           hasSearched={hasSearched}
