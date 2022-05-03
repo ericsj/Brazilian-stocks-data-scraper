@@ -1,4 +1,4 @@
-<h1>Brazilian Stocks data scraper</h1>
+<h1>Brazilian stocks data scraper</h1>
 
 ![screenshot](https://user-images.githubusercontent.com/47046552/166299837-966948d8-059c-4b9a-bfb8-d5f6dfc1a6c0.png)
 
