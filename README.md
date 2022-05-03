@@ -1,4 +1,4 @@
-<h1>Brazilian Stock data scraper</h1>
+<h1>Brazilian Stocks data scraper</h1>
 
 ![screenshot](https://user-images.githubusercontent.com/47046552/166299837-966948d8-059c-4b9a-bfb8-d5f6dfc1a6c0.png)
 
@@ -12,7 +12,7 @@ This project scrapes and stores the following data associated with stocks from t
 - Net worth
 
 It is composed of three modules:
-1. A web crawler/scraper focused in Brazilian stock data. It uses <a href='https://www.fundamentus.com.br/detalhes.php?papel='>this link</a> to get stock acronyms and to create a list of individual stock information links. Then it uses the links to scrape data from two sources: <a href='https://www.fundamentus.com.br/'>Fundamentus</a> and <a href='https://br.financas.yahoo.com/'>Brazilian Yahoo Finances</a>. It also has a script to upload data to the server. (The crawling/scraping code is located in folder "/stock_info_scraper")
+1. A web crawler/scraper focused in Brazilian stocks data. It uses <a href='https://www.fundamentus.com.br/detalhes.php?papel='>this link</a> to get stock acronyms and to create a list of individual stock information links. Then it uses the links to scrape data from two sources: <a href='https://www.fundamentus.com.br/'>Fundamentus</a> and <a href='https://br.financas.yahoo.com/'>Brazilian Yahoo Finances</a>. It also has a script to upload data to the server. (The crawling/scraping code is located in folder "/stock_info_scraper")
 2. A Node.js backend to store the scraped data.
 3. A frontend developed using React and MaterialUI where it is possible to search for a stock acronym.
 
